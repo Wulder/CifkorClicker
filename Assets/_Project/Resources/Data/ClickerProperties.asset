@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e362d3555f2cfc4da05e94a698b474c, type: 3}
   m_Name: ClickerProperties
   m_EditorClassIdentifier: 
-  <ProfitPerTap>k__BackingField: 1
-  <SpendEnergyForTap>k__BackingField: 10
-  <StartPassiveIncome>k__BackingField: 100
+  <ProfitPerTap>k__BackingField: 5
+  <PassiveIncomeInterval>k__BackingField: 5
+  <StartPassiveIncome>k__BackingField: 15
   <MaxEnergy>k__BackingField: 100
+  <SpendEnergyForTap>k__BackingField: 5
+  <EnergyRecoveryInterval>k__BackingField: 0.25
+  <EnergyRecoveryAmount>k__BackingField: 5
+  <PerTapModify>k__BackingField: 1
+  <Divider>k__BackingField: 1
+  <T>k__BackingField: 0

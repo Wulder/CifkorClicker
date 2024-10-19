@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace CifkorClicker 
@@ -12,6 +11,11 @@ namespace CifkorClicker
         {
             PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();
+        }
+
+        public void FullEnergy()
+        {
+            ClickerApplication.Instance.UserDataHandler.SetEnergy(1000);
         }
     }
 }

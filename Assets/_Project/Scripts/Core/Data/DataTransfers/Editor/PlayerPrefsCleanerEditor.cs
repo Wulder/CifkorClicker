@@ -20,6 +20,10 @@ namespace CifkorClicker
             {
                 _cleaner.Clear();
             }
+            if (GUILayout.Button("Set full energy"))
+            {
+                _cleaner.FullEnergy();
+            }
         }
     }
 }

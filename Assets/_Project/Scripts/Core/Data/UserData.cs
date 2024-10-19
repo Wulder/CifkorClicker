@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CifkorClicker
@@ -16,6 +14,11 @@ namespace CifkorClicker
         [SerializeField] public double Energy;
         [SerializeField] public double MaxEnergy;
 
+
+        //last user's join to app
+        [SerializeField] public string LastJoinDate;
+
+        [SerializeField] public bool IsFirstJoin;
         
     }
 }

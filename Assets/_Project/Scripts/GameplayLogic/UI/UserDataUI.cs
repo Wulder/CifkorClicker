@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +16,7 @@ namespace CifkorClicker
         {
             _handler.OnAddCoins += OnChangeBalance;
             _handler.OnRemoveCoins += OnChangeBalance;
+            _handler.OnChangeEnergy += SetEnergy;
 
             SetBalance(_handler.Data.Balance);
             SetPassiveIncome(_handler.Data.PassiveIncome);
@@ -27,6 +27,7 @@ namespace CifkorClicker
         {
             _handler.OnAddCoins -= OnChangeBalance;
             _handler.OnRemoveCoins -= OnChangeBalance;
+            _handler.OnChangeEnergy -= SetEnergy;
         }
         private void OnChangeBalance(double amount)
         {
@@ -41,17 +42,22 @@ namespace CifkorClicker
 
         private void SetBalance(double amount)
         {
-            _balacneTextField.text = amount.ToString();
+            _balacneTextField.text = amount.ToString("#.##");
         }
         private void SetPassiveIncome(double amount)
         {
-            _passiveIncomeTextField.text = amount.ToString();
+            _passiveIncomeTextField.text = amount.ToString("#.##");
         }
+
 
         private void SetEnergy(double amount)
         {
             float maxEnergy = (float)_handler.Data.MaxEnergy;
             float energy = Mathf.Clamp((float)amount, 0, maxEnergy);
+            if (maxEnergy <= 0)
+            {
+                return;
+            }
             _energyFill.fillAmount = energy / maxEnergy;
             _energyTextField.text = $"{energy}/{maxEnergy}";
         }

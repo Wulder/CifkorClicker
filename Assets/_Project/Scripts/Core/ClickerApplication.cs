@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,8 +6,7 @@ namespace CifkorClicker
 {
     public class ClickerApplication : MonoBehaviour
     {
-        //в боевых проектах вместо этого синглтона используем DI.
-        //в данном случае класс ClickerApplication будет держать в себе ключевые модули для работы приложения
+        //in real projects i will use DI, but in this example put all dependencies in this "God" class.
 
         private static ClickerApplication _instance;
         public static ClickerApplication Instance => _instance;
@@ -17,7 +14,7 @@ namespace CifkorClicker
         [SerializeField] private ClickerPropertiesSO _properties;
         public ClickerPropertiesSO Properties => _properties;
 
-        //информация о пользователе и его балансе
+        //initialize data about User
         private UserData _initializedUserData;
         public UserData InitializedUserData => _initializedUserData;
 
@@ -25,7 +22,7 @@ namespace CifkorClicker
         private DataTransfer _dataTransfer;
         public DataTransfer DataTransfer => _dataTransfer;
 
-        //Module for handle data, can be in anywhere in the project, but i put this in ClcikerApplication class
+        //Module for handle data, can be in anywhere in the project, but i put this in ClickerApplication class
         private UserDataHandler _userDataHandler;
         public UserDataHandler UserDataHandler => _userDataHandler;
 
@@ -65,10 +62,18 @@ namespace CifkorClicker
             data.PassiveIncome = _properties.StartPassiveIncome;
             data.Balance = 0;
             data.Energy = _properties.MaxEnergy;
+            data.MaxEnergy = _properties.MaxEnergy;
+            data.LastJoinDate = DateTime.Now.ToString();
+            data.IsFirstJoin = true;
             return data;
         }
 
-        
-     
+        private void OnApplicationQuit()
+        {
+            _userDataHandler.UpdateLastJoinDate();
+            _userDataHandler.SetFirstJoin(false);
+            DataTransfer.SendJsonData(_userDataHandler.Data);
+        }
+
     }
 }

@@ -1,7 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Unity.VisualScripting;
+
+
 
 namespace CifkorClicker
 {
@@ -57,13 +57,14 @@ namespace CifkorClicker
         public void SetEnergy(double amount, bool save = true)
         {
             double newEnergy = amount;
-            if (newEnergy < 0) newEnergy = 0;
-            if (newEnergy > _data.MaxEnergy) newEnergy = _data.MaxEnergy;
+            if (amount < 0) newEnergy = 0;
+            if (amount > _data.MaxEnergy) newEnergy = _data.MaxEnergy;
             _data.Energy = newEnergy;
 
             if (save)
                 ClickerApplication.Instance.DataTransfer.SendJsonData(_data);
-            OnChangeEnergy?.Invoke(newEnergy);
+
+            OnChangeEnergy?.Invoke(_data.Energy);
         }
 
         public void AddEnergy(double amount)
@@ -75,5 +76,17 @@ namespace CifkorClicker
         {
             SetEnergy(_data.Energy - amount);
         }
+
+        public void UpdateLastJoinDate()
+        {
+            _data.LastJoinDate = DateTime.Now.ToString();
+        }
+        
+        public void SetFirstJoin(bool b)
+        {
+            _data.IsFirstJoin = b;
+        }
+        
+       
     }
 }
