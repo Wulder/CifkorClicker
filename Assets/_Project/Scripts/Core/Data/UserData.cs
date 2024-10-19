@@ -8,12 +8,14 @@ namespace CifkorClicker
     [Serializable]
     public struct UserData
     {
-        [SerializeField] private string _userId;
-        [SerializeField] private double _balance;
-        [SerializeField] private double _passiveProfit;
+        [SerializeField] public string UserId;
+        [SerializeField] public double Balance;
+        [SerializeField] public double PassiveIncome;
 
-        public string UserID => _userId;
-        public double Balance => _balance;
-        public double PassiveProfit => _passiveProfit;
+        //parameters for saving current Energy of user and his potential maxEnergy if we will add this mechanic
+        [SerializeField] public double Energy;
+        [SerializeField] public double MaxEnergy;
+
+        
     }
 }

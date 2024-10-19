@@ -8,5 +8,10 @@ namespace CifkorClicker
     public class ClickerPropertiesSO : ScriptableObject
     {
         [field: SerializeField] public double ProfitPerTap { get; private set; }
+        [field: SerializeField] public double SpendEnergyForTap { get; private set; }
+        [field: SerializeField] public double StartPassiveIncome { get; private set; }
+        [field: SerializeField] public double MaxEnergy { get; private set; }
+
+
     }
 }
